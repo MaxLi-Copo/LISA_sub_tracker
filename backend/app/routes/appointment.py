@@ -1,18 +1,10 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
-from app.database import SessionLocal
+from app.database import get_db
 from app.models.appointment import Appointment
 from app.schemas.appointment import AppointmentCreate
 
-router = APIRouter(prefix="/appointments", tags=["appointments"])
-
-
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
+router = APIRouter(tags=["appointments"])
 
 
 @router.post("/")

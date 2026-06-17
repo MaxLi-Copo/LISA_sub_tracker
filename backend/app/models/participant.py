@@ -7,7 +7,7 @@ class Participant(Base):
     id = Column(Integer, primary_key=True, nullable=False, index=True)
     subject_id = Column(String, unique=True, nullable=False, index=True)
 
-    email = Column(String, nullable=Falseunique=True)
+    email = Column(String, nullable=False, unique=True)
     phone = Column(String, nullable=False)
     dob = Column(Date, nullable=False)
 

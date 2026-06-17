@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 
-DATABASE_URL = "postgresql://localhost/lisa_tracker_dev"
+DATABASE_URL = "postgresql://max@localhost/lisa_tracker_dev"
 
 engine = create_engine(DATABASE_URL)
 
@@ -10,7 +10,6 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
 
-# 👇 THIS PART WAS MISSING (IMPORTANT)
 def get_db():
     db = SessionLocal()
     try:
