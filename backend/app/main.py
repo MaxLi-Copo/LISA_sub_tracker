@@ -9,7 +9,7 @@ app = FastAPI(title="LISA Participant Tracker API")
 Base.metadata.create_all(bind=engine)
 
 app.include_router(participant_router, prefix="/participants", tags=["Participants"])
-app.include_router(appointment.router, prefix="/appointments", tags=["Appointments"])
+app.include_router(appointment.router, prefix="/appointments", tags=["appointments"])
 
 
 @app.get("/")
