@@ -4,15 +4,9 @@ from app.database import get_db
 from app.models.participant import Participant
 from pydantic import BaseModel
 from datetime import date
+from app.schemas.participant import ParticipantCreate, ParticipantOut
 
 router = APIRouter()
-
-class ParticipantCreate(BaseModel):
-    subject_id: str
-    email: str
-    phone: str
-    dob: date
-
 
 @router.post("/")
 def create_participant(data: ParticipantCreate, db: Session = Depends(get_db)):
@@ -20,7 +14,8 @@ def create_participant(data: ParticipantCreate, db: Session = Depends(get_db)):
         subject_id=data.subject_id,
         email=data.email,
         phone=data.phone,
-        dob=data.dob
+        dob=data.dob,
+        age_group=data.age_group
     )
     db.add(participant)
     db.commit()
@@ -28,6 +23,6 @@ def create_participant(data: ParticipantCreate, db: Session = Depends(get_db)):
     return participant
 
 
-@router.get("/")
+@router.get("/", response_model=list[ParticipantOut])
 def get_participants(db: Session = Depends(get_db)):
     return db.query(Participant).all()
