@@ -11,7 +11,7 @@ class Participant(Base):
     phone = Column(String, nullable=False)
     dob = Column(Date, nullable=False)
 
-    group = Column(String, nullable=False)
+    age_group = Column(String, nullable=False)
     gender = Column(String, nullable=False)
     race = Column(String, nullable=False)
     edu_years = Column(Integer, nullable=True)
