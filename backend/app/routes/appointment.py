@@ -16,3 +16,8 @@ def create_appointment(appt: AppointmentCreate, db: Session = Depends(get_db)):
     db.refresh(new_appt)
 
     return new_appt
+
+@router.get("/")
+def get_appointments(db: Session = Depends(get_db)):
+
+    return db.query(Appointment).all()
